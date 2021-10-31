@@ -5,8 +5,7 @@ shiftRight :: Abacus -> Int -> Abacus
 shiftRight (Abacus r0 r1 r2) 0 
     | r0 + 1 < 10 = 
             Abacus (r0 + 1) r1 r2
-    | otherwise = 
-        shiftRight(Abacus 0 r1 r2) 1
+    | otherwise = shiftRight(Abacus 0 r1 r2) 1
 
 shiftRight (Abacus r0 r1 r2) 1 
     | r1 + 1 < 10 = 
