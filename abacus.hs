@@ -18,11 +18,6 @@ shiftRight (Abacus r0 r1 r2) 2
             Abacus r0 r1 (r2 + 1)
     | otherwise = Abacus 10 10 10
 
-shiftLeft :: Abacus -> Int -> Int
-shiftLeft (Abacus r1 r2 r3) rowNum  
-    | rowNum == 3 = 0
-    | otherwise = 1
-
 addAbacus :: Abacus -> Int -> Abacus
 addAbacus (Abacus r0 r1 r2) x
     | x == 0 = Abacus r0 r1 r2
@@ -30,14 +25,6 @@ addAbacus (Abacus r0 r1 r2) x
 
 abacusToInt :: Abacus -> Int
 abacusToInt (Abacus r0 r1 r2) = r0 + r1*10 + r2*100
-
--- slideLeft :: Abacus -> Abacus
--- slideLeft
-
--- addAbacus :: Abacus -> Abacus
-
--- multAbacus :: Abacus -> Abacus
-
 
 main = do
     print $ abacusToInt (addAbacus (addAbacus (Abacus 0 0 0) 138) 229)
