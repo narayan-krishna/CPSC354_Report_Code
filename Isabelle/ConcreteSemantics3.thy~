@@ -88,19 +88,9 @@ lemma "aval (full_asimp a) s = aval a s"
 section "3.3"
 
 fun subst :: "vname \<Rightarrow> aexp \<Rightarrow> aexp \<Rightarrow> aexp" where
-"subst x a (N n) = N n"|
-"subst x a (V y) = ( if x=y then a else (V y) )"|
-"subst x a (Plus p1 p2)  = Plus (subst x a p1) (subst x a p2)" 
+subst 
+(* questions here although i have a basic idea *)
 
-value "subst x (N 3) (V y)" (* expect this to return (V y) *)
-
-value "subst x (N 3) (N 5)"
-value "subst x (N 3) (Plus (V x) (N 1))"
-value "subst x (N 4) (Plus (Plus (N 2) (V x)) (Plus (V x) (V y)))"
-
-lemma "aval (subst x a e) s = aval e (s(x := aval a s))"
-  apply (induction e)
-  apply (auto)
-  done
+value "subst x (N 3) (Plus (V x) (V y))"
  
 end
