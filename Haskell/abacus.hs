@@ -1,21 +1,27 @@
-type Row = Int 
+type Row = Int  -- types/type synonyms
 data Abacus = Abacus Row Row Row deriving Show
+                -- deriving show because we need to be able
+                -- to print abacus data
 
-shiftRight :: Abacus -> Int -> Abacus
-shiftRight (Abacus r0 r1 r2) 0 
+-- declarative programming and pattern matching
+-- thinking about an abacus physically... what can we do but continuously
+-- shift beads to the right
+
+shiftRight :: Abacus -> Int -> Abacus 
+shiftRight (Abacus r0 r1 r2) 0 -- at first, we shift the bottom row
     | r0 + 1 < 10 = 
             Abacus (r0 + 1) r1 r2
-    | otherwise = shiftRight(Abacus 0 r1 r2) 1
+    | otherwise = shiftRight(Abacus 0 r1 r2) 1 -- but what if its full?
 
-shiftRight (Abacus r0 r1 r2) 1 
+shiftRight (Abacus r0 r1 r2) 1  -- shift the next row
     | r1 + 1 < 10 = 
-            Abacus r0 (r1 + 1) r2
-    | otherwise = shiftRight(Abacus r0 0 r2) 2
+            Abacus r0 (r1 + 1) r2 -- what if its full?
+    | otherwise = shiftRight(Abacus r0 0 r2) 2 -- shift the row after that
     
 shiftRight (Abacus r0 r1 r2) 2
     | r2 + 1 < 10 = 
-            Abacus r0 r1 (r2 + 1)
-    | otherwise = Abacus 10 10 10
+            Abacus r0 r1 (r2 + 1) -- what if its full?
+    | otherwise = Abacus 10 10 10 -- we simply stay at our complete abacus
 
 addAbacus :: Abacus -> Int -> Abacus
 addAbacus (Abacus r0 r1 r2) x
